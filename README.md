@@ -4,7 +4,7 @@
 ## My Modifications
 While UbiChroma is a wonderful piece of software just the way it is, I wanted to modify it so that it would more accurately reflect the way I, personally, experience the world.
 
-I'm fairly new to shader languages - while modifying or even writing them doesn't seem to bad, the process of learning I needed to manually download and install Jim G Jones's HLSL Tools for Visual Studio (since whatever's supposed to be there by default..wasn't there for me - prolly a bad install), manually set the Properties of the HLSL shaders to be a Pixel Shader on version 5.0, and finally the compilation into a .h file when pointed to the right folder would result in the proper compilation of a shader to be included in the built application.
+I'm fairly new to shader languages - while modifying or even writing them doesn't seem too bad, the process of learning I needed to manually download and install Jim G Jones's HLSL Tools for Visual Studio (since whatever's supposed to be there by default..wasn't there for me - prolly a bad install), manually set the Properties of the HLSL shaders to be a Pixel Shader on version 5.0, and finally the compilation into a .h file when pointed to the right folder would result in the proper compilation of a shader to be included in the built application.
 
 Since I'm just tuning this for myself I got a little hacky with it - instead of digging deeeeeep throughout the code to determine all the places I'd need to add new entries to the list of possible color blindnesses, I simply overwrote the display labels and compiled shaders for Deutan and Tritan to point at other Protan shaders, each using a different implementation and tuned until it closely matched my own experience.
 
