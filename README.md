@@ -1,4 +1,7 @@
-# My Modifications
+# UbiChroma - With Modifications
+**Chroma** (developed by Ubisoft) helps in simulating different types of color blindness occurring in society.
+
+## My Modifications
 While UbiChroma is a wonderful piece of software just the way it is, I wanted to modify it so that it would more accurately reflect the way I, personally, experience the world.
 
 I'm fairly new to shader languages - while modifying or even writing them doesn't seem to bad, the process of learning I needed to manually download and install Jim G Jones's HLSL Tools for Visual Studio (since whatever's supposed to be there by default..wasn't there for me - prolly a bad install), manually set the Properties of the HLSL shaders to be a Pixel Shader on version 5.0, and finally the compilation into a .h file when pointed to the right folder would result in the proper compilation of a shader to be included in the built application.
@@ -21,9 +24,10 @@ I'm really happy with this - I can now super quickly bring up this modified vers
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+
+
 # Chroma
 
-**Chroma** (developed by Ubisoft) helps in simulating different types of color blindness occurring in society.
 ![03 Hero Asset - Secondary 1](https://github.com/user-attachments/assets/24da16ce-ee0d-42d2-a6c4-d3329086e095)
 
 Main purpose of this is to simulate 3 major [Color Blindness](https://en.wikipedia.org/wiki/Color_blindness) types _Protanopia_, _Deuteranopia_ and _Tritanopia_ for our different games and aid accessibility team in performing various complex testing.
