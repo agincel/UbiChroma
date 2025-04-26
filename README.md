@@ -8,6 +8,8 @@ I'm fairly new to shader languages - while modifying or even writing them doesn'
 
 Since I'm just tuning this for myself I got a little hacky with it - instead of digging deeeeeep throughout the code to determine all the places I'd need to add new entries to the list of possible color blindnesses, I simply overwrote the display labels and compiled shaders for Deutan and Tritan to point at other Protan shaders, each using a different implementation and tuned until it closely matched my own experience.
 
+I implemented the three following approaches into [the Protan Shader](https://github.com/agincel/UbiChroma/blob/main/source/shaders/ProtanPixelShader.hlsl), compiled it three separate times (once with each method used in protanMain individually), and hackily overrode the Tritan and Deutan .h files accordingly. I'm not necessarily proud of the approach, but it got me where I needed to go. The three approaches were...
+
 ## UbiChroma's Built-In Approach
 The Built-in UbiChroma approach completely collapses the Red and Green channels to one value, guaranteeing that it can only simulate total red blindness, rather than red deficiency. The way around this (that seems to have been built-in but then circumvented internally) is to, as the final step of the pixel shader, lerp from the pixel's original color, to the simulated blindness color, by some percentage. I ended up settling on 0.4, so you could say that, by this method, I'm 40% red-deficient.
 
