@@ -4,3 +4,10 @@
 /source/.vs/*.*
 /source/x64/*.*
 Chroma/
+/source/.vs/*
+/source/.vs/
+/source/UbiChroma/x64/
+/source/UbiChroma/x64/*
+/source/UbiChroma/x64/*.*
+source/UbiChroma/x64/
+*Generated Files*
