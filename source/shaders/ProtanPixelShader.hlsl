@@ -28,11 +28,12 @@ float3 Daltonize(float3 input, float amountBlind)
     
     const float3x3 LMS_TO_RGB =
     {
-        0.0809444479, -0.130504409, 0.116721066,
-		-0.0102485335, 0.0540193266, -0.113614708,
-		-0.000365296938, -0.00412161469, 0.693511405
+         0.0809444479,   -0.130504409,    0.116721066,
+		-0.0102485335,    0.0540193266,  -0.113614708,
+		-0.000365296938, -0.00412161469,  0.693511405
     };
     
+    // Black magic Protanopia matrix. w h e r e  d i d  t h i s  c o m e  f r o m
     const float3x3 PROTANOPIA =
     {
          0.0, 2.02344, -2.52581,
@@ -48,7 +49,7 @@ float3 Daltonize(float3 input, float amountBlind)
     };
     
     // To simulate protanomaly instead of protanopia lerp from Normal (0) to Protanope (1)
-    const float3x3 PROTANOMALY = lerp(PROTANOPIA, NORMAL, saturate(amountBlind));
+    const float3x3 PROTANOMALY = lerp(NORMAL, PROTANOPIA, saturate(amountBlind));
     
     // RGB to LMS matrix conversion
     float3 lmsColor = mul(RGB_TO_LMS, input.rgb);
@@ -63,15 +64,15 @@ float3 Daltonize(float3 input, float amountBlind)
 float3 acerolaCB(float3 color)
 {
     // https://github.com/GarrettGunnell/Post-Processing/blob/main/Assets/Color%20Blindness/Protanomaly.cginc
-    float3x3 blindness = // protanomaly03
+    float3x3 blindness = // protanomaly07
     {
-        0.630323, 0.465641, -0.095964,
-        0.069181, 0.890046, 0.040773,
-       -0.006308, -0.007724, 1.014032
+        0.385450,  0.769005, -0.154455,
+        0.100526,  0.829802,  0.069673,
+       -0.007442, -0.022190,  1.029632
     };
     
     float3 cb = mul(blindness, color.rgb);
-    return float4(saturate(cb), 1.0f);
+    return saturate(cb);
 }
 
 float3 protanDeutanFilter(int k1, int k2, int k3, float3 color, float amountBlind) {
@@ -86,10 +87,24 @@ float3 protanDeutanFilter(int k1, int k2, int k3, float3 color, float amountBlin
     return lerp(color, lin2rgb(float3(r_blind, r_blind, b_blind)), amountBlind);
 }
 
+float3 weightedAverage(float3 ubiSim, float3 aceSim, float3 lmsSim, float ubiWeight, float aceWeight, float lmsWeight)
+{
+    return ((ubiSim * ubiWeight) + (aceSim * aceWeight) + (lmsSim * lmsWeight)) / (ubiWeight + aceWeight + lmsWeight);
+}
+
 float3 protanMain(PS_INPUT Input) : SV_TARGET
 {
     float3 color = g_accessibilityTexture.Sample(g_samLinear, Input.vTexcoord);
-    return protanDeutanFilter(14.443137, 114.054902, 0.513725, color, 0.4f);
+    return protanDeutanFilter(14.443137, 114.054902, 0.513725, color, 0.8f);
     //return acerolaCB(color);
-    //return Daltonize(color, 0.45f);
+    //return Daltonize(color, 0.66f);
+    
+    /*
+    return weightedAverage(
+        protanDeutanFilter(14.443137, 114.054902, 0.513725, color, 0.8f),
+        acerolaCB(color),
+        Daltonize(color, 0.66f),
+        1, 1, 0.75f
+    );
+    */
 }

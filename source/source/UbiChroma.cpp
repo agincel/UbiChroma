@@ -716,9 +716,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     globalList.clear();
     globalList.insert(std::pair<int, std::string>(ID_FILTER_DEFAULT,"Default"));
     globalList.insert(std::pair<int, std::string>(ID_FILTER_PROTAN ,"Protan (UbiChroma modified)")); 
-    globalList.insert(std::pair<int, std::string>(ID_FILTER_DEUTAN, "Protan (Acerola)")); 
+    globalList.insert(std::pair<int, std::string>(ID_FILTER_DEUTAN, "Protan (Acerola p07)")); 
     globalList.insert(std::pair<int, std::string>(ID_FILTER_TRITAN ,"Protan (LMS-RGB)"));
-    globalList.insert(std::pair<int, std::string>(ID_FILTER_GSCALE, "Grayscale"));
+    globalList.insert(std::pair<int, std::string>(ID_FILTER_GSCALE, "Protan (Weighted Average)"));
     globalList.insert(std::pair<int, std::string>(ID_TRANSPARENT_ITEM, "Game Input"));
     globalList.insert(std::pair<int, std::string>(ID_NONTRANSPARENT_ITEM, "Tool Input"));
     globalList.insert(std::pair<int, std::string>(ID_HOTKEY_TOOL_SCREENSHOT, "ToolScreenshot"));
