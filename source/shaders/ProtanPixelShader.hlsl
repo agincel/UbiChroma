@@ -104,7 +104,7 @@ float3 protanMain(PS_INPUT Input) : SV_TARGET
         protanDeutanFilter(14.443137, 114.054902, 0.513725, color, 0.8f),
         acerolaCB(color),
         Daltonize(color, 0.66f),
-        1, 1, 0.75f
+        2.5f, 1.3f, 0.7f // a 2.5:2 ratio of UbiChroma : Other
     );
     */
 }
